@@ -1,0 +1,48 @@
+---
+// Preguntas frecuentes sobre lino: el titular fijo a la izquierda y, a la derecha, un acordeón nativo <details>
+// (filetes, pregunta en la didona de los títulos, signo dorado), sin JavaScript. Campos: `preguntas[]`
+// (pregunta, respuesta). Sin preguntas no se pinta. También sirve de diseño para apartados nuevos (`tipo: preguntas`).
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const preguntas = s ? s.preguntas.filter((p) => p && p.pregunta) : [];
+---
+
+{
+  s && preguntas.length > 0 && (
+    <Seccion id={Astro.props.id} banda="lino">
+      <div class="faq-rejilla">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} class="!mb-0" />
+        <div class="faq-lista">
+          {preguntas.map((p) => (
+            <details class="faq">
+              <summary>
+                <span class="faq-pregunta">{p.pregunta}</span>
+                <span class="faq-signo" aria-hidden="true" />
+              </summary>
+              {p.respuesta && <p class="faq-respuesta">{p.respuesta}</p>}
+            </details>
+          ))}
+        </div>
+      </div>
+    </Seccion>
+  )
+}
+
+<style>
+  .faq-lista { border-top: 1px solid var(--c-texto); }
+  .faq { border-bottom: 1px solid var(--linea); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 2.75rem; padding-block: 1.5rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq-pregunta { font-family: var(--fuente-titulos); font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.3; }
+  .faq-signo { position: relative; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border: 1px solid var(--filete); border-radius: 999px; }
+  .faq-signo::before, .faq-signo::after { content: ""; position: absolute; left: 50%; top: 50%; width: .9rem; height: 1px; background: var(--oro-texto); transform: translate(-50%, -50%); transition: transform .25s ease; }
+  .faq-signo::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .faq[open] .faq-signo::after { transform: translate(-50%, -50%) rotate(0deg); }
+  .faq[open] .faq-signo { background: var(--oro); border-color: var(--oro); }
+  .faq[open] .faq-signo::before, .faq[open] .faq-signo::after { background: var(--sobre-oro); }
+  .faq-respuesta { max-width: 44rem; padding-bottom: 1.75rem; padding-right: 3.5rem; opacity: .85; }
+  @media (max-width: 559px) { .faq-respuesta { padding-right: 0; } }
+</style>

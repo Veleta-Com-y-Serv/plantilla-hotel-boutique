@@ -1,0 +1,67 @@
+---
+// Habitaciones y apartamentos: filas 50/50 a sangre en zigzag sobre noche; la foto toca el borde de la ventana
+// y el texto va al otro lado con número, tipo, nombre, precio, personas y extras.
+// `habitaciones` [{nombre, categoria, texto, precio, personas, extras, imagen}]: `precio` y `personas` como cadena
+// («desde 145 €/noche», «2 personas»); `categoria` es el tipo («Suite», «Apartamento»); `extras` es una cadena
+// separada por comas. Lo que esté vacío no se pinta.
+import { seccion, valores, nueva } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const lista = s?.habitaciones ?? [];
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id} banda="noche" class="!pb-0" sangre>
+      <div class="contenedor">
+        <Titular alinear="partido" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      </div>
+      {lista.length > 0 && (
+        <div class="estancias">
+          {lista.map((h, i) => (
+            <article class:list={['estancia', { 'estancia--sin-foto': !h.imagen }]}>
+              {h.imagen && (
+                <div class="estancia-foto">
+                  <Imagen src={h.imagen} alt={h.nombre} ancho={1400} alto={1050} />
+                </div>
+              )}
+              <div class="estancia-texto">
+                <p class="estancia-num">
+                  <b aria-hidden="true">{String(i + 1).padStart(2, '0')}</b>
+                  {h.categoria && <span class="rotulo">{h.categoria}</span>}
+                </p>
+                <h3 class="estancia-titulo">{h.nombre}</h3>
+                {(h.precio || h.personas) && (
+                  <p class="estancia-datos">
+                    {h.precio && <span class="estancia-precio">{h.precio}</span>}
+                    {h.personas && (
+                      <span class="estancia-personas">
+                        <Icono nombre="usuarios" tam={18} />
+                        {h.personas}
+                      </span>
+                    )}
+                  </p>
+                )}
+                {h.texto && <p class="mt-5 leading-relaxed opacity-90">{h.texto}</p>}
+                {valores(h.extras).length > 0 && (
+                  <ul class="estancia-extras">
+                    {valores(h.extras).map((x) => <li>{x.charAt(0).toUpperCase() + x.slice(1)}</li>)}
+                  </ul>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+      {s.cta?.url ? (
+        <div class="contenedor py-14 text-center md:py-20">
+          <a class="btn" href={s.cta.url} {...nueva(s.cta.url)}>{s.cta.texto}</a>
+        </div>
+      ) : null}
+    </Seccion>
+  )
+}

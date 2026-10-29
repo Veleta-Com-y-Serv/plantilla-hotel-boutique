@@ -1,0 +1,53 @@
+---
+// Experiencias: fila de arcos de medio punto (foto con filete dorado) a todo el ancho del contenido, con número
+// romano, título y texto debajo. `items` [{titulo, texto, imagen, icono}]; sin `imagen`, el arco es noche con el icono.
+// En móvil, un arco por fila; en tableta, dos; en escritorio, hasta cuatro.
+import { seccion, nueva } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const items = s?.items ?? [];
+/** Número romano (1 a 24, el máximo de una lista). */
+function romano(n: number): string {
+  const tabla: [number, string][] = [[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+  let r = '';
+  for (const [v, l] of tabla) while (n >= v) { r += l; n -= v; }
+  return r;
+}
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id} banda="lino">
+      <Titular alinear="partido" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      {items.length > 0 && (
+        <ul class="arcos" style={`--n:${Math.min(items.length, 4)}`}>
+          {items.map((it, i) => (
+            <li>
+              <div class="arco-marco">
+                {it.imagen ? (
+                  <span class="arco">
+                    <Imagen src={it.imagen} alt={it.titulo} ancho={900} alto={1200} />
+                  </span>
+                ) : (
+                  <span class="arco arco-vacio" aria-hidden="true"><Icono nombre={it.icono || 'arco'} tam={40} /></span>
+                )}
+              </div>
+              <span class="arcos-num rotulo" aria-hidden="true">{romano(i + 1)}</span>
+              <h3 class="arcos-titulo">{it.titulo}</h3>
+              {it.texto && <p class="arcos-texto">{it.texto}</p>}
+            </li>
+          ))}
+        </ul>
+      )}
+      {s.cta?.url && (
+        <p class="mt-14">
+          <a class="btn btn--noche" href={s.cta.url} {...nueva(s.cta.url)}>{s.cta.texto}</a>
+        </p>
+      )}
+    </Seccion>
+  )
+}

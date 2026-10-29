@@ -1,0 +1,36 @@
+---
+// Reservas: banda partida a sangre. A la izquierda, oro pleno con el título, el texto, el botón (`cta`, normalmente
+// WhatsApp o teléfono) y la `nota` (cancelación, estancia mínima…); a la derecha, noche con el formulario de llegada,
+// salida y personas (mailto). Opcional `enlace_reservas`: web externa de reservas; si es una dirección https://…,
+// aparece otro botón que la abre (su texto sale de `cta_secundario.texto`, si lo hay).
+import { seccion, site, externo, nueva } from '../../data/site';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const enlace = s?.enlace_reservas && externo(s.enlace_reservas) ? s.enlace_reservas : '';
+const etiquetaEnlace = s?.cta_secundario?.texto || 'Reservar en línea';
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="banda sin-relleno">
+      <div class="reserva">
+        <div class="reserva-texto banda--oro">
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          {s.titulo && <h2 class="titulo-seccion">{s.titulo}</h2>}
+          {s.texto && <p class="mt-6 max-w-[32rem] text-[1.08rem] leading-relaxed">{s.texto}</p>}
+          {(s.cta?.url || enlace) && (
+            <div class="botones mt-9">
+              {s.cta?.url && <a class="btn btn--noche" href={s.cta.url} {...nueva(s.cta.url)}>{s.cta.texto}</a>}
+              {enlace && <a class="btn-linea" href={enlace} rel="noopener" target="_blank">{etiquetaEnlace}</a>}
+            </div>
+          )}
+          {s.nota && <p class="reserva-nota">{s.nota}</p>}
+        </div>
+        <div class="reserva-form banda--noche">
+          <FormularioContacto estancia oscuro prefijo={`r-${Astro.props.id}`} boton="Consultar disponibilidad" asunto={`Reserva en ${site.nombre}`} />
+        </div>
+      </div>
+    </section>
+  )
+}

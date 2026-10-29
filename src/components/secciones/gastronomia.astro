@@ -1,0 +1,46 @@
+---
+// Gastronomía: fila 50/50 a sangre, la foto toca el borde izquierdo y el texto va sobre oro pleno.
+// Campos: antetitulo, titulo, texto (párrafos separados por una línea en blanco), imagen, cta y `items`
+// [{titulo, texto}] como filas de horario o de servicios («Desayuno · De 8:00 a 11:00»). Sin foto, banda de oro.
+import { seccion, parrafos, nueva } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="banda banda--oro sin-relleno">
+      <div class:list={['partida', { 'partida--sola': !s.imagen }]}>
+        {s.imagen && (
+          <div class="partida-foto">
+            <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1400} alto={1050} />
+          </div>
+        )}
+        <div class="partida-texto">
+          <div>
+            {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+            {s.titulo && <h2 class="titulo-seccion">{s.titulo}</h2>}
+            {parrafos(s.texto).length > 0 && (
+              <div class="mt-6 space-y-4 text-[1.06rem] leading-relaxed">
+                {parrafos(s.texto).map((p) => <p>{p}</p>)}
+              </div>
+            )}
+            {s.items.length > 0 && (
+              <ul class="horas">
+                {s.items.map((it) => (
+                  <li>
+                    <span class="horas-titulo">{it.titulo}</span>
+                    {it.texto && <span>{it.texto}</span>}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {s.cta?.url && <a class="btn btn--noche mt-10" href={s.cta.url} {...nueva(s.cta.url)}>{s.cta.texto}</a>}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

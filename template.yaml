@@ -1,0 +1,94 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: hotel-boutique
+nombre: Hotel y apartamentos
+descripcion: Web exclusiva para hoteles y apartamentos, con habitaciones en zigzag, experiencias, restaurante y reservas.
+sectores:
+  - { id: hotel, nombre: Hotel }
+  - { id: hotel-boutique, nombre: Hotel boutique }
+  - { id: hostal, nombre: Hostal }
+  - { id: apartamentos-turisticos, nombre: Apartamentos turísticos }
+  - { id: alquiler-vacacional, nombre: Alquiler vacacional }
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: esencia, nombre: La casa }
+  - { id: habitaciones, nombre: Habitaciones y apartamentos }
+  - { id: experiencias, nombre: Experiencias }
+  - { id: gastronomia, nombre: Restaurante }
+  - { id: galeria, nombre: Fotos }
+  - { id: opiniones, nombre: Opiniones }
+  - { id: como-llegar, nombre: Cómo llegar }
+  - { id: reservas, nombre: Reservas }
+  - { id: preguntas, nombre: Preguntas frecuentes }
+  - { id: contacto, nombre: Contacto }
+estilo: exclusivo
+plan_minimo: presencia
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-hotel-boutique.noexpertise.com
+activa: true
+orden: 300
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: negocio
+    titulo: "Tu alojamiento"
+    pregunta: "¿Cómo se llama tu hotel o tus apartamentos y qué los hace especiales?"
+    ayuda: "Dónde estáis, qué se ve desde allí, para quién es (parejas, familias, viajes de trabajo) y qué se respira."
+    tipo: texto
+    campos: [nombre, eslogan, seo.titulo, seo.descripcion, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.texto, secciones.hero.items]
+  - id: contacto
+    titulo: "Cómo te encuentran"
+    pregunta: "¿Dónde estáis y cómo os pueden llamar o reservar?"
+    ayuda: "Solo lo que quieras que vean tus huéspedes. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, secciones.reservas.enlace_reservas, redes.instagram, redes.facebook]
+  - id: esencia
+    titulo: "La casa"
+    pregunta: "Cuéntame en una o dos frases qué es tu casa: su historia, el edificio, lo que siente quien llega."
+    ayuda: "Es la frase grande que se lee nada más bajar de la portada."
+    tipo: texto
+    campos: [secciones.esencia.antetitulo, secciones.esencia.declaracion, secciones.esencia.autor]
+  - id: habitaciones
+    titulo: "Habitaciones y apartamentos"
+    pregunta: "Cuéntame tus habitaciones, suites o apartamentos: nombre, qué tienen, cuántas personas y el precio si quieres. Uno por línea."
+    ayuda: "Si lo prefieres, añádelos luego en Contenido."
+    tipo: lista
+    campos: [secciones.habitaciones.habitaciones]
+  - id: experiencias
+    titulo: "Experiencias"
+    pregunta: "¿Qué pueden hacer tus huéspedes cerca? Visitas, rutas, catas, sitios que recomiendas… Una por línea."
+    ayuda: "Si lo prefieres, añádelas luego en Contenido."
+    tipo: lista
+    campos: [secciones.experiencias.items]
+  - id: gastronomia
+    titulo: "Restaurante y desayunos"
+    pregunta: "¿Dais desayunos, comidas o cenas? Cuéntame qué cocináis y a qué horas."
+    ayuda: "Si no tienes restaurante, puedes ocultar este apartado en Contenido."
+    tipo: texto
+    campos: [secciones.gastronomia.titulo, secciones.gastronomia.texto, secciones.gastronomia.items]
+  - id: reservas
+    titulo: "Reservas"
+    pregunta: "¿Cómo se reserva? Cuéntame lo que tiene que saber quien quiera venir: cancelación, estancia mínima…"
+    tipo: texto
+    campos: [secciones.reservas.titulo, secciones.reservas.texto, secciones.reservas.nota]
+  - id: preguntas
+    titulo: "Preguntas frecuentes"
+    pregunta: "¿Qué os preguntan más a menudo? Escribe cada pregunta y lo que respondéis."
+    ayuda: "Si lo prefieres, añádelas luego en Contenido."
+    tipo: lista
+    campos: [secciones.preguntas.preguntas]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada y, si quieres, las de la casa, el restaurante y la galería."
+    ayuda: "Sube las tuyas o elige una del banco. Las que no cambies se quedan como están."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.esencia.imagen, secciones.gastronomia.imagen, secciones.galeria.galeria]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso

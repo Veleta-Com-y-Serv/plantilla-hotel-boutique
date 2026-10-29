@@ -1,0 +1,151 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+# Listas siempre planas (nunca una lista dentro de un elemento de lista). Precios siempre entre comillas.
+nombre: Casa Nueve Arcos
+eslogan: Hotel boutique y apartamentos sobre el Tajo, en el casco antiguo de Ronda.
+sector: hotel-boutique
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre en texto.
+colores:
+  primario: "#15120e"
+  acento: "#a8844a"
+  fondo: "#efe8dc"
+  texto: "#1d1a15"
+contacto:
+  telefono: "952 87 30 19"
+  email: reservas@casanuevearcos.es
+  direccion: Calle Mirador del Tajo 9, 29400 Ronda (Málaga)
+  horario: "Recepción abierta las 24 horas. Entrada desde las 15:00 y salida hasta las 12:00."
+  whatsapp: "+34 611 87 30 19"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: https://www.facebook.com/
+  linkedin: ""
+menu:
+  - { texto: Habitaciones, url: "/#habitaciones" }
+  - { texto: Experiencias, url: "/#experiencias" }
+  - { texto: Restaurante, url: "/#gastronomia" }
+  - { texto: Fotos, url: "/#galeria" }
+  - { texto: Cómo llegar, url: "/#como-llegar" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Reservar, url: "/#reservas" }
+seo:
+  titulo: Casa Nueve Arcos · Hotel boutique y apartamentos en Ronda
+  descripcion: "Hotel boutique de doce habitaciones y tres apartamentos en una casa palacio del siglo XVIII junto al Puente Nuevo de Ronda, con terraza sobre el Tajo."
+  tipo: Hotel
+marca_pie: false
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: "Ronda · Casco antiguo"
+    titulo: Dormir al borde del Tajo
+    texto: "Una casa palacio del siglo XVIII convertida en hotel de doce habitaciones y tres apartamentos, a dos minutos a pie del Puente Nuevo."
+    imagen: /fotos/hero.jpg
+    cta: { texto: Consultar disponibilidad, url: "/#reservas" }
+    cta_secundario: { texto: Ver las habitaciones, url: "/#habitaciones" }
+    items:
+      - { titulo: Terraza sobre el Tajo, icono: montana }
+      - { titulo: Desayuno incluido, icono: taza }
+      - { titulo: Piscina en el patio, icono: piscina }
+      - { titulo: Aparcamiento concertado, icono: parking }
+
+  esencia:
+    activa: true
+    antetitulo: La casa
+    declaracion: "Nueve arcos de piedra, un patio con naranjos y el silencio del casco antiguo. Aquí el tiempo va al ritmo de la luz sobre la serranía."
+    autor: "Familia Ortega Lucena, desde 1998"
+    imagen: /fotos/patio.jpg
+
+  habitaciones:
+    activa: true
+    antetitulo: Habitaciones y apartamentos
+    titulo: Quince maneras de quedarse
+    texto: "Techos altos, suelos de barro antiguo y ropa de cama de algodón egipcio. Todas con baño propio, climatización y vistas al patio, al Tajo o a los tejados de la ciudad."
+    habitaciones:
+      - { nombre: Suite del Tajo, categoria: Suite, texto: "La joya de la casa: balcón volado sobre el desfiladero, bañera exenta frente a la ventana y una cama de 200 que mira a la serranía.", precio: "desde 240 €/noche", personas: "2 personas", extras: "Balcón sobre el Tajo, bañera exenta, desayuno en la habitación, cafetera de cápsulas", imagen: /fotos/habitacion-1.jpg }
+      - { nombre: Habitación Patio de los Naranjos, categoria: Habitación, texto: "Abierta a la galería del patio, con el murmullo de la fuente y el olor del azahar en primavera. Tranquila y fresca en verano.", precio: "desde 145 €/noche", personas: "2 personas", extras: "Vistas al patio, ducha de lluvia, minibar, escritorio", imagen: /fotos/habitacion-2.jpg }
+      - { nombre: Habitación Torreón, categoria: Habitación, texto: "En lo alto de la casa, con vigas de madera vistas y una ventana a los tejados del casco antiguo y la iglesia de Santa María.", precio: "desde 165 €/noche", personas: "2 personas + cuna", extras: "Vigas vistas, vistas a la ciudad, ducha de lluvia, carta de almohadas", imagen: /fotos/habitacion-3.jpg }
+      - { nombre: Apartamento La Alameda, categoria: Apartamento, texto: "Para quedarse más días: salón con cocina equipada, un dormitorio de matrimonio y un sofá cama. Entrada independiente por el callejón.", precio: "desde 190 €/noche", personas: "Hasta 4 personas", extras: "Cocina equipada, lavadora, entrada independiente, servicios del hotel", imagen: /fotos/apartamento-1.jpg }
+
+  experiencias:
+    activa: true
+    antetitulo: Experiencias
+    titulo: Ronda, a tu ritmo
+    texto: "Las preparamos con gente de aquí. Pídelas al reservar o en recepción."
+    items:
+      - { titulo: Bodegas de la serranía, texto: "Visita y cata en una bodega familiar a quince minutos, entre viñas de altura.", imagen: /fotos/experiencia-1.jpg }
+      - { titulo: Bajada al Tajo, texto: "El camino de los Molinos al amanecer, cuando la piedra se vuelve dorada.", imagen: /fotos/experiencia-2.jpg }
+      - { titulo: Baños árabes, texto: "Recorrido privado por los baños del siglo XIII y el barrio de San Miguel.", imagen: /fotos/experiencia-3.jpg }
+      - { titulo: Pueblos blancos, texto: "Ruta en coche por Grazalema y Zahara con paradas para comer y fotografiar.", imagen: /fotos/experiencia-4.jpg }
+
+  gastronomia:
+    activa: true
+    antetitulo: Restaurante
+    titulo: La mesa del patio
+    texto: "Cocina de la serranía con producto de temporada: chacina de la sierra, chivo lechal, setas en otoño y aceite de la comarca. Al caer la tarde, la terraza abre para cenar con el Tajo enfrente."
+    imagen: /fotos/restaurante.jpg
+    cta: { texto: Reservar mesa, url: "/#reservas" }
+    items:
+      - { titulo: Desayuno, texto: "De 8:00 a 11:00, en el patio o en la habitación" }
+      - { titulo: Comidas, texto: "De 13:30 a 16:00, de miércoles a domingo" }
+      - { titulo: Cenas en la terraza, texto: "De 20:30 a 23:00, de abril a octubre" }
+
+  galeria:
+    activa: true
+    antetitulo: Fotos
+    titulo: La casa, de la azotea al patio
+    galeria:
+      - /fotos/galeria-1.jpg
+      - /fotos/galeria-2.jpg
+      - /fotos/galeria-3.jpg
+      - /fotos/galeria-4.jpg
+      - /fotos/galeria-5.jpg
+
+  opiniones:
+    activa: true
+    antetitulo: Huéspedes
+    titulo: Lo que se llevan de aquí
+    testimonios:
+      - { texto: "Abrir el balcón de la Suite del Tajo por la mañana es de esas cosas que no se olvidan. El trato, impecable de principio a fin.", autor: Clara y Tomás, nota: "Septiembre de 2026" }
+      - { texto: "Nos quedamos cinco noches en el apartamento con los niños. Teníamos la independencia de una casa y el desayuno del hotel.", autor: Familia Beltrán, nota: Booking }
+      - { texto: "La cena en la terraza al atardecer, con el desfiladero delante, vale el viaje entero.", autor: Ingrid M., nota: Google }
+
+  como-llegar:
+    activa: true
+    antetitulo: Cómo llegar
+    titulo: En el corazón de la ciudad antigua
+    texto: "Estamos en una calle peatonal del casco antiguo, a dos minutos del Puente Nuevo. Al reservar te enviamos cómo llegar en coche hasta el aparcamiento concertado."
+    imagen: /placeholders/plano.svg
+    cta: { texto: Abrir en Google Maps, url: "" }
+    items:
+      - { titulo: En coche, texto: "Desde Málaga por la A-357 y la A-367, en 1 h 30 min. Desde Marbella por la A-397, en 50 min.", icono: coche }
+      - { titulo: En tren, texto: "La estación de Ronda tiene trenes directos desde Algeciras, Antequera y Granada. Está a 15 minutos a pie.", icono: tren }
+      - { titulo: En avión, texto: "Los aeropuertos más cercanos son Málaga y Jerez. Podemos reservarte un traslado privado.", icono: avion }
+
+  reservas:
+    activa: true
+    antetitulo: Reservas
+    titulo: Tu estancia, sin intermediarios
+    texto: "Escríbenos con las fechas y cuántos sois. Te contestamos en el día con la disponibilidad y el precio final."
+    cta: { texto: Reservar por WhatsApp, url: "https://wa.me/34611873019?text=Hola%2C%20quiero%20consultar%20fechas" }
+    cta_secundario: { texto: Reservar en línea, url: "" }
+    enlace_reservas: ""
+    nota: "Cancelación gratuita hasta 72 horas antes de la llegada. Estancia mínima de dos noches en Semana Santa y en la Feria de Pedro Romero."
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Antes de llegar
+    preguntas:
+      - { pregunta: "¿A qué hora puedo entrar y salir?", respuesta: "La habitación está lista desde las 15:00 y la salida es hasta las 12:00. Si llegas antes, te guardamos el equipaje y puedes usar el patio y la piscina." }
+      - { pregunta: "¿El desayuno está incluido?", respuesta: "Sí, en todas las habitaciones. En los apartamentos es opcional y se sirve en el patio o en la propia casa." }
+      - { pregunta: "¿Dónde aparco?", respuesta: "El casco antiguo es peatonal. Tenemos plazas en un aparcamiento vigilado a 300 metros con precio especial para huéspedes." }
+      - { pregunta: "¿Se admiten mascotas?", respuesta: "Sí, perros pequeños en los apartamentos, con aviso previo y un suplemento por noche." }
+      - { pregunta: "¿Puedo cancelar?", respuesta: "La cancelación es gratuita hasta 72 horas antes de la llegada. Después se cobra la primera noche." }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Hablemos de tu viaje
+    texto: "Para una celebración, una estancia larga o cualquier duda, escríbenos o llámanos. Recepción abierta día y noche."

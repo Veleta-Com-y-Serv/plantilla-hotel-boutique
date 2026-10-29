@@ -1,0 +1,58 @@
+---
+// Cómo llegar: fila 50/50 a sangre sobre noche honda; a un lado el texto, la dirección en grande, las formas de
+// llegar (`items` con icono: coche, tren, bus, avion…) y el botón a Google Maps con site.yaml → contacto.direccion
+// (texto en `cta.texto`; si `cta.url` tiene una dirección web, se usa esa); al otro, el plano (`imagen`) a sangre.
+import { seccion, site, mapa } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const c = site.contacto;
+const destino = s?.cta?.url || mapa(c.direccion);
+const etiqueta = s?.cta?.texto || 'Abrir en Google Maps';
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="banda banda--honda sin-relleno">
+      <div class:list={['partida partida--invertida', { 'partida--sola': !s.imagen }]}>
+        {s.imagen && (
+          <div class="partida-foto">
+            {destino ? (
+              <a href={destino} rel="noopener" target="_blank" aria-label={etiqueta} class="block h-full">
+                <Imagen src={s.imagen} alt="Plano de situación" ancho={1400} alto={1050} />
+              </a>
+            ) : (
+              <Imagen src={s.imagen} alt="Plano de situación" ancho={1400} alto={1050} />
+            )}
+          </div>
+        )}
+        <div class="partida-texto">
+          <div>
+            <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} class="!mb-0" />
+            {c.direccion && <p class="direccion-grande">{c.direccion}</p>}
+            {s.items.length > 0 && (
+              <ul class="vias-llegar">
+                {s.items.map((it) => (
+                  <li>
+                    <Icono nombre={it.icono || 'ruta'} tam={24} />
+                    <div>
+                      <p class="vias-llegar-titulo">{it.titulo}</p>
+                      {it.texto && <p class="mt-1 text-[.95rem] opacity-85">{it.texto}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {destino && (
+              <a class="btn-linea mt-10" href={destino} rel="noopener" target="_blank">
+                <Icono nombre="mapa" tam={18} /> {etiqueta}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

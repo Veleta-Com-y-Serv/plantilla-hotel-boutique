@@ -1,0 +1,35 @@
+---
+// Esencia de la casa: una frase grande en cursiva didona (`declaracion`) firmada (`autor`) junto a una foto con
+// remate de arco y filete dorado (`imagen`). Sin foto, la frase ocupa la banda. Sin frase ni título, no se pinta.
+// Campos: antetitulo, titulo (opcional, encima de la frase), declaracion, autor, imagen, cta.
+import { seccion, nueva } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Seccion from '../ui/Seccion.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const frase = s?.declaracion || s?.texto || '';
+---
+
+{
+  s && (frase || s.titulo) && (
+    <Seccion id={Astro.props.id} banda="lino">
+      <div class:list={['esencia', s.imagen ? 'esencia--foto' : 'esencia--sola']}>
+        {s.imagen && (
+          <div class="arco-marco mx-auto w-full max-w-[17rem] sm:max-w-[22rem] lg:max-w-[26rem]">
+            <span class="arco aspect-[3/4]">
+              <Imagen src={s.imagen} alt={altSeccion(s) || s.antetitulo} ancho={900} alto={1200} />
+            </span>
+          </div>
+        )}
+        <figure>
+          {s.antetitulo && <p class="antetitulo mb-8">{s.antetitulo}</p>}
+          {s.titulo && <h2 class="titulo-seccion mb-8 !mt-0">{s.titulo}</h2>}
+          {frase && <blockquote class="esencia-frase">{frase}</blockquote>}
+          {s.autor && <figcaption class="esencia-autor rotulo">{s.autor}</figcaption>}
+          {s.cta?.url && <a class="btn mt-10" href={s.cta.url} {...nueva(s.cta.url)}>{s.cta.texto}</a>}
+        </figure>
+      </div>
+    </Seccion>
+  )
+}
