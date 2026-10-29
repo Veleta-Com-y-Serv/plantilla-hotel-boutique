@@ -1,8 +1,9 @@
-/* Hotel y apartamentos — estilo exclusivo a ancho completo: negro + oro viejo + lino.
-   Bandas de borde a borde que alternan noche, lino y oro pleno; portada a pantalla completa con la foto a sangre,
-   velo y un marco fino dorado por dentro; serif didona de sistema (Bodoni/Didot) enorme para títulos y una sans
-   geométrica en mayúsculas espaciadas para rótulos; el motivo del arco (fotos con remate de medio punto) y filas
-   foto/texto 50/50 en las que la foto toca el borde de la ventana.
+/* Hotel y apartamentos — estilo exclusivo a ancho completo, concepto «la casa de los arcos»: negro + oro viejo + lino.
+   Bandas de borde a borde que alternan noche, lino y oro pleno; varias empiezan con una cúpula (el borde de arriba
+   curvado como un arco rebajado que se monta sobre la banda anterior). Portada a pantalla completa con la foto a
+   sangre y el texto centrado, sin marco. Garalda de sistema (Garamond) en cursiva enorme para títulos, rótulos en
+   cursiva y antetítulos con un arquito de oro delante; botones de píldora en minúscula; el motivo del arco (fotos con
+   remate de medio punto) y filas foto/texto 50/50 en las que la foto toca el borde de la ventana.
    Todo sale de las cuatro variables de color de site.yaml (--c-primario, --c-acento, --c-fondo, --c-texto):
    el diseño cuenta con un primario oscuro y un fondo claro. */
 @import "tailwindcss";
@@ -10,11 +11,12 @@
 @config "../../tailwind.config.mjs";
 
 :root {
-  --fuente-titulos: "Bodoni 72", Didot, "Bodoni MT", "Didot LT STD", "Big Caslon", "Book Antiqua", Georgia, "Times New Roman", serif;
+  --fuente-titulos: "EB Garamond", "Adobe Garamond Pro", "Garamond Premier Pro", Garamond, Sabon, "Hoefler Text", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --fuente-texto: "Avenir Next", Avenir, "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
-  --fuente-rotulos: Futura, "Century Gothic", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --radio: 0; --ritmo: 4.5rem; --ritmo-md: 8rem; --ancho: 90rem;
   --alto-cabecera: 4.25rem;
+  /* Altura de la cúpula con la que empiezan algunas bandas */
+  --cupula: clamp(2.25rem, 5vw, 5rem);
   /* Derivados (siguen funcionando si el cliente cambia los colores) */
   --noche: var(--c-primario);
   --noche-honda: color-mix(in srgb, var(--c-primario) 72%, #000);
@@ -35,7 +37,9 @@
 @layer base {
   html { scroll-padding-top: calc(var(--alto-cabecera) + .5rem); }
   body { font-family: var(--fuente-texto); font-size: 1.02rem; line-height: 1.7; background: var(--lino); }
-  h1, h2, h3 { font-family: var(--fuente-titulos); font-weight: 400; letter-spacing: -0.012em; line-height: 1.04; }
+  h1, h2, h3 { font-family: var(--fuente-titulos); font-weight: 400; letter-spacing: -0.01em; line-height: 1.02; }
+  /* Titulares en cursiva; los nombres (h3) en redonda */
+  h1, h2 { font-style: italic; }
   :focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; }
   /* La cabecera es fija: las páginas sin portada a sangre empiezan por debajo */
   main > :first-child:not(.portada) { margin-top: var(--alto-cabecera); }
@@ -51,14 +55,18 @@
   .banda--piedra { background: var(--piedra); color: var(--c-texto); }
   .banda--oro { background: var(--oro); color: var(--sobre-oro); }
   .sin-relleno { padding-block: 0 !important; }
+  /* Cúpula: la banda empieza con un arco rebajado de borde a borde que se monta sobre la anterior */
+  .banda--cupula { z-index: 1; margin-top: calc(var(--cupula) * -1); padding-top: calc(var(--ritmo) + var(--cupula)); border-radius: 50% 50% 0 0 / var(--cupula) var(--cupula) 0 0; }
+  @media (min-width: 768px) { .banda--cupula { padding-top: calc(var(--ritmo-md) + var(--cupula)); } }
 
   /* ---------- Rótulos y titulares ---------- */
-  .rotulo { font-family: var(--fuente-rotulos); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .32em; line-height: 1.5; }
-  .antetitulo { display: inline-flex; align-items: center; gap: .9rem; font-family: var(--fuente-rotulos); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .32em; color: var(--oro-texto); }
-  .antetitulo::before { content: ""; width: 2.75rem; height: 1px; background: currentColor; flex-shrink: 0; }
+  .rotulo { font-family: var(--fuente-titulos); font-style: italic; font-size: 1.12rem; letter-spacing: 0; line-height: 1.4; }
+  /* Antetítulo: un arquito de oro delante y el texto en la sans, en minúscula */
+  .antetitulo { display: inline-flex; align-items: center; gap: .7rem; font-family: var(--fuente-texto); font-size: .95rem; font-weight: 600; letter-spacing: .01em; line-height: 1.4; color: var(--oro-texto); }
+  .antetitulo::before { content: ""; flex-shrink: 0; width: .8rem; height: 1.05rem; border: 1.5px solid currentColor; border-bottom: 0; border-radius: 999px 999px 0 0; }
   .banda--noche .antetitulo, .banda--honda .antetitulo, .portada .antetitulo { color: var(--oro-claro); }
   .banda--oro .antetitulo { color: var(--sobre-oro); }
-  .titulo-seccion { margin-top: 1.1rem; font-size: clamp(2.4rem, 5.6vw, 4.9rem); }
+  .titulo-seccion { margin-top: .9rem; font-size: clamp(2.65rem, 6vw, 5.4rem); }
   .titular { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
   .titular-texto { margin-top: 1.4rem; max-width: 38rem; font-size: 1.08rem; opacity: .85; }
   /* Titular partido: título a la izquierda y texto a la derecha en escritorio */
@@ -70,15 +78,17 @@
   .titular--centro .antetitulo { justify-content: center; }
   .titular--centro .titular-texto { margin-inline: auto; }
 
-  /* ---------- Botones: rectos, mayúsculas espaciadas ---------- */
-  .btn, .btn-sec, .btn-linea { font-family: var(--fuente-rotulos); font-size: .76rem; font-weight: 600; text-transform: uppercase; letter-spacing: .2em; min-height: 3rem; padding: .9rem 1.8rem; max-width: 100%; border-radius: 0; }
-  .btn { background: var(--oro); color: var(--sobre-oro); border: 1px solid var(--oro); }
-  .btn:hover { background: color-mix(in srgb, var(--oro) 82%, #fff); }
-  .btn--noche { background: var(--noche); color: var(--sobre-oscuro); border-color: var(--noche); }
+  /* ---------- Botones: píldora, en minúscula; noche sobre claro y lino sobre oscuro (el oro queda para los detalles) ---------- */
+  .btn, .btn-sec, .btn-linea { font-family: var(--fuente-texto); font-size: 1rem; font-weight: 600; letter-spacing: .01em; min-height: 3.1rem; padding: .85rem 1.9rem; max-width: 100%; border-radius: 999px; }
+  .btn { background: var(--noche); color: var(--sobre-oscuro); border: 1px solid var(--noche); }
+  .btn:hover { background: var(--noche-honda); }
+  .banda--noche .btn, .banda--honda .btn, .portada .btn, .cabecera--palacio .btn, .formulario--oscuro .btn { background: var(--lino); color: var(--noche); border-color: var(--lino); }
+  .banda--noche .btn:hover, .banda--honda .btn:hover, .portada .btn:hover, .cabecera--palacio .btn:hover, .formulario--oscuro .btn:hover { background: var(--oro-claro); border-color: var(--oro-claro); }
+  .btn--noche, .banda--noche .btn--noche { background: var(--noche); color: var(--sobre-oscuro); border-color: var(--noche); }
   .btn--noche:hover { background: var(--noche-honda); }
   .btn-linea { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; text-decoration: none; cursor: pointer; line-height: 1.2; text-align: center; border: 1px solid currentColor; background: transparent; color: inherit; transition: background-color .15s ease; }
   .btn-linea:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
-  .btn-sec { padding-inline: 0; color: inherit; border-bottom: 1px solid var(--oro); min-height: 2.75rem; }
+  .btn-sec { padding-inline: 0; color: inherit; border-bottom: 1px solid var(--oro); border-radius: 0; min-height: 2.75rem; }
   .btn-sec::after { content: "\2192" / ""; transition: transform .2s ease; }
   .btn-sec:hover::after { transform: translateX(4px); }
   .botones { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
@@ -88,16 +98,16 @@
   .cabecera--palacio.es-transparente { background: transparent; border-bottom-color: transparent; }
   .cabecera--palacio .cabecera-fila { min-height: var(--alto-cabecera); gap: 1.5rem; }
   .cabecera--palacio .marca { display: flex; flex-direction: column; gap: .1rem; }
-  .cabecera--palacio .marca-nombre { font-family: var(--fuente-titulos); font-size: clamp(1.05rem, 4vw, 1.35rem); text-transform: uppercase; letter-spacing: .16em; line-height: 1.2; }
+  .cabecera--palacio .marca-nombre { font-family: var(--fuente-titulos); font-style: italic; font-size: clamp(1.4rem, 5.4vw, 1.75rem); letter-spacing: 0; line-height: 1.1; }
   .cabecera--palacio .marca-sub { display: none; }
-  .cabecera--palacio .cabecera-nav { gap: 2.1rem; }
-  .cabecera--palacio .cabecera-nav a { font-family: var(--fuente-rotulos); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .22em; padding-block: .35rem; border-bottom: 1px solid transparent; }
+  .cabecera--palacio .cabecera-nav { gap: 2rem; }
+  .cabecera--palacio .cabecera-nav a { font-size: .97rem; font-weight: 500; padding-block: .35rem; border-bottom: 1px solid transparent; }
   .cabecera--palacio .cabecera-nav a:hover { border-bottom-color: var(--oro); }
-  .cabecera--palacio .cabecera-cta { min-height: 2.75rem; padding: .6rem 1.3rem; white-space: nowrap; }
-  .cabecera--palacio .menu-movil summary { min-height: 2.75rem; min-width: 2.75rem; padding-inline: .25rem; font-family: var(--fuente-rotulos); font-size: .72rem; text-transform: uppercase; letter-spacing: .22em; }
+  .cabecera--palacio .cabecera-cta { min-height: 2.75rem; padding: .55rem 1.4rem; white-space: nowrap; }
+  .cabecera--palacio .menu-movil summary { min-height: 2.75rem; min-width: 2.75rem; padding-inline: .25rem; font-size: .97rem; font-weight: 500; }
   .cabecera--palacio .menu-movil-panel { background: var(--noche-honda); color: var(--sobre-oscuro); padding: 1rem 1rem 1.75rem; max-height: calc(100svh - var(--alto-cabecera)); overflow-y: auto; box-shadow: 0 20px 40px rgb(0 0 0 / .35); }
-  .cabecera--palacio .menu-movil-panel a { font-family: var(--fuente-titulos); font-size: 1.55rem; padding-block: .8rem; border-bottom-color: var(--linea-clara); }
-  .cabecera--palacio .menu-movil-panel .btn { font-family: var(--fuente-rotulos); font-size: .76rem; }
+  .cabecera--palacio .menu-movil-panel a { font-family: var(--fuente-titulos); font-style: italic; font-size: 1.7rem; padding-block: .75rem; border-bottom-color: var(--linea-clara); }
+  .cabecera--palacio .menu-movil-panel .btn { font-family: var(--fuente-texto); font-style: normal; font-size: 1rem; }
   .menu-movil[open] .menu-movil-icono { background: transparent; }
   .menu-movil[open] .menu-movil-icono::before { top: 0; transform: rotate(45deg); }
   .menu-movil[open] .menu-movil-icono::after { top: 0; transform: rotate(-45deg); }
@@ -107,36 +117,38 @@
     .cabecera--palacio .cabecera-nav { display: flex; }
     .cabecera--palacio .cabecera-cta { display: inline-flex; }
     .cabecera--palacio .menu-movil { display: none; }
-    .cabecera--palacio .marca-sub { display: block; font-family: var(--fuente-rotulos); font-size: .6rem; text-transform: uppercase; letter-spacing: .3em; color: var(--oro-claro); }
+    .cabecera--palacio .marca-sub { display: block; font-size: .8rem; font-weight: 500; color: var(--oro-claro); }
   }
 
   /* ---------- Portada a pantalla completa ---------- */
-  .portada { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-height: 100vh; min-height: 100svh; padding-top: calc(var(--alto-cabecera) + 3rem); background: var(--noche-honda); color: var(--sobre-oscuro); overflow: hidden; }
+  /* Texto centrado sobre la foto a sangre, sin marco; abajo deja sitio a la cúpula de la banda siguiente */
+  .portada { position: relative; isolation: isolate; display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; padding-top: calc(var(--alto-cabecera) + 2.5rem); padding-bottom: calc(var(--cupula) + 1.5rem); background: var(--noche-honda); color: var(--sobre-oscuro); text-align: center; overflow: hidden; }
   .portada-foto { position: absolute; inset: 0; z-index: -2; }
   .portada-foto img { width: 100%; height: 100%; object-fit: cover; }
   .portada::before { content: ""; position: absolute; inset: 0; z-index: -1; background:
-      linear-gradient(to top, color-mix(in srgb, var(--noche-honda) 92%, transparent) 0%, color-mix(in srgb, var(--noche-honda) 55%, transparent) 42%, color-mix(in srgb, var(--noche-honda) 15%, transparent) 70%, color-mix(in srgb, var(--noche-honda) 55%, transparent) 100%); }
-  /* Marco fino dorado por dentro de la foto */
-  .portada::after { content: ""; position: absolute; inset: .75rem; border: 1px solid color-mix(in srgb, var(--oro) 60%, transparent); pointer-events: none; }
-  @media (min-width: 768px) { .portada::after { inset: 1.5rem; } }
-  .portada-texto { padding-bottom: 2.5rem; }
-  .portada-titulo { margin-top: 1.25rem; max-width: 15ch; font-size: clamp(2.85rem, 9vw, 7.4rem); line-height: .96; letter-spacing: -0.02em; }
-  .portada-entradilla { margin-top: 1.6rem; max-width: 34rem; font-size: clamp(1.02rem, 1.5vw, 1.2rem); opacity: .9; }
-  .portada .botones { margin-top: 2.25rem; }
+      radial-gradient(ellipse 70% 55% at 50% 48%, color-mix(in srgb, var(--noche-honda) 62%, transparent) 0%, transparent 100%),
+      linear-gradient(to bottom, color-mix(in srgb, var(--noche-honda) 60%, transparent) 0%, color-mix(in srgb, var(--noche-honda) 25%, transparent) 30%, color-mix(in srgb, var(--noche-honda) 35%, transparent) 70%, color-mix(in srgb, var(--noche-honda) 80%, transparent) 100%); }
+  .portada-texto { display: flex; flex-direction: column; align-items: center; margin-block: auto; padding-block: 2rem; }
+  .portada-titulo { margin-top: 1.1rem; max-width: 14ch; font-size: clamp(3rem, 10vw, 7.8rem); line-height: .95; letter-spacing: -0.015em; }
+  .portada-entradilla { margin-top: 1.6rem; max-width: 36rem; font-size: clamp(1.02rem, 1.5vw, 1.2rem); opacity: .92; }
+  .portada .botones { justify-content: center; margin-top: 2.4rem; }
   .portada .btn-sec { color: var(--sobre-oscuro); }
-  .portada-datos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--filete); margin-bottom: 1.25rem; }
-  @media (min-width: 768px) { .portada-datos { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); margin-bottom: 2.25rem; } }
-  .portada-datos li { display: flex; align-items: center; gap: .75rem; min-width: 0; padding: 1.1rem .75rem 1.1rem 0; font-family: var(--fuente-rotulos); font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .2em; line-height: 1.45; }
+  /* Detalles de la casa en una línea centrada, separados por rombos de oro */
+  .portada-datos { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.75rem; }
+  .portada-datos li { display: inline-flex; align-items: center; gap: .55rem; min-width: 0; font-size: .95rem; font-weight: 500; line-height: 1.45; }
   .portada-datos li svg { flex-shrink: 0; color: var(--oro-claro); }
-  @media (min-width: 768px) { .portada-datos li + li { padding-left: 1.25rem; border-left: 1px solid var(--filete); } }
+  @media (min-width: 768px) {
+    .portada-datos { gap: .75rem 0; }
+    .portada-datos li + li::before { content: ""; width: .4rem; height: .4rem; margin-inline: 1.5rem; transform: rotate(45deg); background: var(--oro); }
+  }
 
   /* ---------- Esencia: la frase grande junto a una foto en arco ---------- */
   .esencia { display: grid; gap: 3rem; align-items: center; }
   @media (min-width: 768px) { .esencia--foto { grid-template-columns: 4fr 7fr; gap: clamp(3rem, 7vw, 7rem); } }
-  .esencia-frase { font-family: var(--fuente-titulos); font-style: italic; font-size: clamp(1.85rem, 4.1vw, 3.7rem); line-height: 1.16; letter-spacing: -0.01em; }
+  .esencia-frase { font-family: var(--fuente-titulos); font-size: clamp(2rem, 4.3vw, 3.9rem); line-height: 1.14; letter-spacing: -0.01em; }
   .esencia-frase::before { content: "\201C"; display: block; height: .55em; margin-bottom: .2em; font-size: 2.2em; line-height: 1; color: var(--oro); font-style: normal; }
   .esencia-autor { display: flex; align-items: center; gap: .9rem; margin-top: 2rem; color: var(--oro-texto); }
-  .esencia-autor::before { content: ""; width: 2.75rem; height: 1px; background: currentColor; }
+  .esencia-autor::before { content: ""; width: 1.75rem; height: 1px; background: currentColor; }
   .esencia--sola { max-width: 64rem; }
 
   /* Arco de medio punto con filete dorado separado */
@@ -208,7 +220,7 @@
   .horas { margin-top: 2.25rem; border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent); }
   .horas li { display: grid; gap: .2rem; padding-block: 1.05rem; border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent); }
   @media (min-width: 560px) { .horas li { grid-template-columns: 12rem minmax(0, 1fr); gap: 1.5rem; align-items: baseline; } }
-  .horas-titulo { font-family: var(--fuente-rotulos); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .22em; }
+  .horas-titulo { font-family: var(--fuente-titulos); font-style: italic; font-size: 1.3rem; line-height: 1.3; }
 
   /* ---------- Galería de borde a borde ---------- */
   .mosaico { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: clamp(9.5rem, 46vw, 16rem); grid-auto-flow: dense; gap: 3px; background: var(--noche-honda); }
@@ -223,7 +235,7 @@
 
   /* ---------- Opiniones ---------- */
   .opinion-grande { max-width: 68rem; }
-  .opinion-grande blockquote { font-family: var(--fuente-titulos); font-style: italic; font-size: clamp(1.7rem, 3.6vw, 3.1rem); line-height: 1.22; }
+  .opinion-grande blockquote { font-family: var(--fuente-titulos); font-size: clamp(1.85rem, 3.8vw, 3.3rem); line-height: 1.2; }
   .opinion-grande blockquote::before { content: "\201C"; display: block; height: .5em; font-size: 2.4em; line-height: 1; color: var(--oro); font-style: normal; }
   .opinion-autor { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin-top: 1.5rem; }
   .opinion-nota { color: var(--oro-texto); }
@@ -237,7 +249,7 @@
   .vias-llegar { display: grid; gap: 0; margin-top: 2rem; border-top: 1px solid var(--linea-clara); }
   .vias-llegar li { display: flex; align-items: flex-start; gap: 1rem; padding-block: 1.2rem; border-bottom: 1px solid var(--linea-clara); }
   .vias-llegar svg { flex-shrink: 0; width: 1.5rem; height: 1.5rem; margin-top: 0; color: var(--oro-claro); }
-  .vias-llegar-titulo { font-family: var(--fuente-rotulos); font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; }
+  .vias-llegar-titulo { font-size: 1rem; font-weight: 600; }
   .banda--lino .vias-llegar, .banda--lino .vias-llegar li { border-color: var(--linea); }
   .banda--lino .vias-llegar svg { color: var(--oro-texto); }
 
@@ -257,7 +269,7 @@
   .formulario-fila { display: grid; gap: 1rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
   .formulario-fila--fechas { grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); }
   .campo { min-width: 0; }
-  .campo label { font-family: var(--fuente-rotulos); font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .2em; opacity: .85; }
+  .campo label { font-size: .9rem; font-weight: 600; opacity: .88; }
   .campo input, .campo textarea { min-width: 0; max-width: 100%; min-height: 2.9rem; padding-inline: 0; background: transparent; border: 0; border-bottom: 1px solid color-mix(in srgb, currentColor 40%, transparent); border-radius: 0; }
   .campo textarea { min-height: 5rem; }
   .campo input:focus, .campo textarea:focus { outline: none; border-bottom-color: var(--oro); box-shadow: 0 1px 0 var(--oro); }
@@ -287,18 +299,19 @@
   @media (min-width: 768px) { .contacto-form { padding: 3rem; } }
 
   /* ---------- Pie ---------- */
-  .pie--palacio { padding-top: 0; background: var(--noche-honda); color: var(--sobre-oscuro); }
-  .pie-gran-nombre { padding-block: clamp(3.5rem, 7vw, 6rem) clamp(2rem, 4vw, 3.5rem); border-bottom: 1px solid var(--filete); }
-  .pie-gran-nombre p { font-family: var(--fuente-titulos); font-size: clamp(2.6rem, 9.5vw, 9rem); line-height: .95; letter-spacing: -0.02em; color: var(--oro); overflow-wrap: anywhere; }
+  /* El pie también empieza con cúpula */
+  .pie--palacio { position: relative; z-index: 1; margin-top: calc(var(--cupula) * -1); padding-top: var(--cupula); border-radius: 50% 50% 0 0 / var(--cupula) var(--cupula) 0 0; background: var(--noche-honda); color: var(--sobre-oscuro); }
+  .pie-gran-nombre { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem); border-bottom: 1px solid var(--filete); text-align: center; }
+  .pie-gran-nombre p { font-family: var(--fuente-titulos); font-style: italic; font-size: clamp(2.8rem, 10vw, 9.5rem); line-height: .95; letter-spacing: -0.015em; color: var(--oro); overflow-wrap: anywhere; }
   .pie-columnas { display: grid; gap: 2.5rem; padding-top: 3rem; }
   @media (min-width: 640px) { .pie-columnas { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1024px) { .pie-columnas { grid-template-columns: 4fr 3fr 3fr 3fr; gap: 3rem; } }
-  .pie--palacio .pie-titulo { font-family: var(--fuente-rotulos); font-weight: 600; letter-spacing: .28em; color: var(--oro-claro); opacity: 1; }
+  .pie--palacio .pie-titulo { font-family: var(--fuente-titulos); font-style: italic; font-size: 1.3rem; text-transform: none; letter-spacing: 0; color: var(--oro-claro); opacity: 1; }
   .pie--palacio .pie-eslogan { max-width: 30ch; opacity: .8; font-family: var(--fuente-titulos); font-size: 1.25rem; line-height: 1.4; }
   .pie--palacio .pie-lista { font-size: .95rem; }
   .pie--palacio .pie-lista a { display: inline-block; padding-block: .2rem; }
   .pie--palacio .pie-redes { margin-top: 0; gap: .5rem; }
-  .pie--palacio .pie-redes a { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid var(--filete); }
+  .pie--palacio .pie-redes a { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid var(--filete); border-radius: 999px; }
   .pie--palacio .pie-redes a:hover { background: color-mix(in srgb, var(--oro) 20%, transparent); }
   .pie--palacio .pie-legal { margin-top: 3rem; border-top-color: var(--linea-clara); }
   .pie--palacio .pie-legal a { text-decoration: underline; text-underline-offset: 3px; }

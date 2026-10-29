@@ -1,5 +1,5 @@
 ---
-// Habitaciones y apartamentos: filas 50/50 a sangre en zigzag sobre noche; la foto toca el borde de la ventana
+// Habitaciones y apartamentos: filas 50/50 a sangre en zigzag sobre noche (banda con cúpula); la foto toca el borde de la ventana
 // y el texto va al otro lado con número, tipo, nombre, precio, personas y extras.
 // `habitaciones` [{nombre, categoria, texto, precio, personas, extras, imagen}]: `precio` y `personas` como cadena
 // («desde 145 €/noche», «2 personas»); `categoria` es el tipo («Suite», «Apartamento»); `extras` es una cadena
@@ -16,7 +16,7 @@ const lista = s?.habitaciones ?? [];
 
 {
   s && (
-    <Seccion id={Astro.props.id} banda="noche" class="!pb-0" sangre>
+    <Seccion id={Astro.props.id} banda="noche" class="!pb-0" sangre cupula>
       <div class="contenedor">
         <Titular alinear="partido" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
       </div>

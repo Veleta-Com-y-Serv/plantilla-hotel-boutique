@@ -5,7 +5,7 @@ import datos from '../../site.yaml';
 export interface Enlace { texto: string; url: string }
 export interface Item { titulo: string; texto?: string; icono?: string; imagen?: string }
 export interface Persona { nombre: string; cargo?: string; foto?: string; texto?: string }
-/** Opinión. `nota` es opcional (de dónde viene o cuándo: «Booking», «Agosto de 2026»…). */
+/** Opinión. `nota` es opcional (de dónde viene o cuándo: «Estancia de agosto», «Agosto de 2026»…). */
 export interface Testimonio { texto: string; autor: string; nota?: string }
 export interface Horario { dia: string; horas: string }
 export interface Pregunta { pregunta: string; respuesta: string }

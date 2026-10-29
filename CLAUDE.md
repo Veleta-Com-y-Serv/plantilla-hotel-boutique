@@ -6,15 +6,15 @@ Todo en castellano de España, frases cortas, sin jerga.
 ## Dónde está cada cosa
 - **Textos, contacto, menú, SEO y secciones**: `site.yaml` (raíz). Es la única fuente de contenido. `src/data/site.ts` lo carga, lo tipa y lo normaliza; no pongas textos fijos en los componentes.
 - **Colores**: `site.yaml → colores` (primario = negro noche, acento = oro viejo, fondo = lino, texto). `src/layouts/Base.astro` los convierte en variables CSS (`--c-primario`…). Los tonos derivados (`--noche-honda`, `--noche-suave`, `--oro-claro`, `--oro-texto`, `--piedra`, `--sobre-oscuro`, `--sobre-oro`, `--filete`) se calculan con `color-mix` en `src/styles/global.css`. El diseño cuenta con un primario oscuro y un fondo claro.
-- **Tipografías y aspecto general**: `src/styles/global.css` (didona del sistema —Bodoni, Didot, Georgia de respaldo— para títulos; sans del sistema para el texto; sans geométrica en mayúsculas espaciadas para rótulos y botones). Bandas `.banda--noche|honda|lino|piedra|oro`, filas a sangre `.estancia` y `.partida`, arcos `.arco`, mosaico `.mosaico`. Fuentes del sistema: no añadas fuentes externas.
+- **Tipografías y aspecto general**: `src/styles/global.css` (garalda del sistema —Garamond, Palatino, Georgia de respaldo— en cursiva para títulos y rótulos; sans del sistema para el texto, los antetítulos y los botones de píldora, sin mayúsculas espaciadas). Bandas `.banda--noche|honda|lino|piedra|oro` y `.banda--cupula` (empieza con un arco rebajado de borde a borde; en `Seccion.astro`, prop `cupula`), filas a sangre `.estancia` y `.partida`, arcos `.arco`, mosaico `.mosaico`. Fuentes del sistema: no añadas fuentes externas.
 - **Cabecera**: `src/components/Header.astro` (fija; transparente sobre la portada y sólida al hacer scroll, con un script pequeño). **Pie**: `src/components/Footer.astro` (nombre enorme en oro y cuatro columnas).
 - **Imágenes**: en `public/`. Fotos en `public/fotos/` (se generan a partir de `fotos.json`); si una foto de `/fotos/` falta, `Imagen.astro` muestra `/placeholders/<mismo nombre>.svg`. El plano de situación es `/placeholders/plano.svg` (dibujo propio). Personas: siempre `/placeholders/persona.svg`, nunca caras generadas.
-- **Logo**: `site.yaml → logo` (ruta en `public/`); vacío = nombre en versales didonas y, en escritorio, la localidad debajo.
+- **Logo**: `site.yaml → logo` (ruta en `public/`); vacío = nombre en cursiva garalda y, en escritorio, la localidad debajo.
 - **Pie «Web creada con NoExpertise»**: `site.yaml → marca_pie` (true en plan gratis; esta plantilla es de plan presencia).
 
 ## Secciones
 Cada sección es un componente que solo se pinta si `site.yaml → secciones.<id>.activa` es `true`, en el orden de `site.yaml`.
-- `hero` → `hero.astro` (portada a pantalla completa, foto a sangre con velo y marco dorado)
+- `hero` → `hero.astro` (portada a pantalla completa, foto a sangre con velo y texto centrado, sin marco)
 - `esencia` → `esencia.astro` (frase grande junto a una foto en arco)
 - `habitaciones` → `habitaciones.astro` (filas 50/50 a sangre en zigzag)
 - `experiencias` → `experiencias.astro` (fila de arcos con foto)

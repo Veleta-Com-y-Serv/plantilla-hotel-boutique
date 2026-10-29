@@ -1,5 +1,5 @@
 ---
-// Galería de borde a borde sobre noche: mosaico sin márgenes (filete de 3 px) que toca los dos bordes de la ventana.
+// Galería de borde a borde sobre noche (banda con cúpula): mosaico sin márgenes (filete de 3 px) que toca los dos bordes de la ventana.
 // La primera foto (y luego una de cada nueve) es grande, 2 × 2; el resto, celdas iguales: con 5 o 9 fotos el
 // mosaico queda cerrado. Fotos en site.yaml → secciones.<id>.galeria (lista de rutas).
 import { seccion } from '../../data/site';
@@ -14,7 +14,7 @@ const fotos = s?.galeria ?? [];
 
 {
   s && fotos.length > 0 && (
-    <Seccion id={Astro.props.id} banda="noche" class="!pb-0" sangre>
+    <Seccion id={Astro.props.id} banda="noche" class="!pb-0" sangre cupula>
       <div class="contenedor">
         <Titular alinear="partido" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
       </div>

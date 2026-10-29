@@ -1,6 +1,6 @@
 ---
-// Preguntas frecuentes sobre lino: el titular fijo a la izquierda y, a la derecha, un acordeón nativo <details>
-// (filetes, pregunta en la didona de los títulos, signo dorado), sin JavaScript. Campos: `preguntas[]`
+// Preguntas frecuentes sobre lino con cúpula: el titular fijo a la izquierda y, a la derecha, un acordeón nativo <details>
+// (filetes, pregunta en la garalda de los títulos, signo dorado), sin JavaScript. Campos: `preguntas[]`
 // (pregunta, respuesta). Sin preguntas no se pinta. También sirve de diseño para apartados nuevos (`tipo: preguntas`).
 import { seccion } from '../../data/site';
 import Seccion from '../ui/Seccion.astro';
@@ -12,7 +12,7 @@ const preguntas = s ? s.preguntas.filter((p) => p && p.pregunta) : [];
 
 {
   s && preguntas.length > 0 && (
-    <Seccion id={Astro.props.id} banda="lino">
+    <Seccion id={Astro.props.id} banda="lino" cupula>
       <div class="faq-rejilla">
         <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} class="!mb-0" />
         <div class="faq-lista">

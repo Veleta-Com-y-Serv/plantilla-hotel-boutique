@@ -108,8 +108,8 @@ secciones:
     titulo: Lo que se llevan de aquí
     testimonios:
       - { texto: "Abrir el balcón de la Suite del Tajo por la mañana es de esas cosas que no se olvidan. El trato, impecable de principio a fin.", autor: Clara y Tomás, nota: "Septiembre de 2026" }
-      - { texto: "Nos quedamos cinco noches en el apartamento con los niños. Teníamos la independencia de una casa y el desayuno del hotel.", autor: Familia Beltrán, nota: Booking }
-      - { texto: "La cena en la terraza al atardecer, con el desfiladero delante, vale el viaje entero.", autor: Ingrid M., nota: Google }
+      - { texto: "Nos quedamos cinco noches en el apartamento con los niños. Teníamos la independencia de una casa y el desayuno del hotel.", autor: Familia Beltrán, nota: "Estancia de agosto" }
+      - { texto: "La cena en la terraza al atardecer, con el desfiladero delante, vale el viaje entero.", autor: Ingrid M., nota: "Estancia de junio" }
 
   como-llegar:
     activa: true
