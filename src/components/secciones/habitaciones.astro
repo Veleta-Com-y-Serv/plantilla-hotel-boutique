@@ -3,12 +3,14 @@
 // y el texto va al otro lado con número, tipo, nombre, precio, personas y extras.
 // `habitaciones` [{nombre, categoria, texto, precio, personas, extras, imagen}]: `precio` y `personas` como cadena
 // («desde 145 €/noche», «2 personas»); `categoria` es el tipo («Suite», «Apartamento»); `extras` es una cadena
-// separada por comas. Lo que esté vacío no se pinta.
+// separada por comas. Lo que esté vacío no se pinta. Las habitaciones con `detalle` tienen página propia
+// (/habitaciones/<slug>/, src/pages/[coleccion]/[slug].astro) y la fila enlaza a ella; las demás quedan como antes.
 import { seccion, valores, nueva } from '../../data/site';
 import Seccion from '../ui/Seccion.astro';
 import Titular from '../ui/Titular.astro';
 import Imagen from '../ui/Imagen.astro';
 import Icono from '../ui/Icono.astro';
+import { enlaceDe } from '../../lib/paginas';
 interface Props { id: string }
 const s = seccion(Astro.props.id);
 const lista = s?.habitaciones ?? [];
@@ -23,7 +25,7 @@ const lista = s?.habitaciones ?? [];
       {lista.length > 0 && (
         <div class="estancias">
           {lista.map((h, i) => (
-            <article class:list={['estancia', { 'estancia--sin-foto': !h.imagen }]}>
+            <article class:list={['estancia', { 'estancia--sin-foto': !h.imagen, 'estancia--enlace': !!enlaceDe(h) }]}>
               {h.imagen && (
                 <div class="estancia-foto">
                   <Imagen src={h.imagen} alt={h.nombre} ancho={1400} alto={1050} />
@@ -34,7 +36,7 @@ const lista = s?.habitaciones ?? [];
                   <b aria-hidden="true">{String(i + 1).padStart(2, '0')}</b>
                   {h.categoria && <span class="rotulo">{h.categoria}</span>}
                 </p>
-                <h3 class="estancia-titulo">{h.nombre}</h3>
+                <h3 class="estancia-titulo">{enlaceDe(h) ? <a href={enlaceDe(h)} class="estancia-enlace">{h.nombre}</a> : h.nombre}</h3>
                 {(h.precio || h.personas) && (
                   <p class="estancia-datos">
                     {h.precio && <span class="estancia-precio">{h.precio}</span>}
@@ -52,6 +54,7 @@ const lista = s?.habitaciones ?? [];
                     {valores(h.extras).map((x) => <li>{x.charAt(0).toUpperCase() + x.slice(1)}</li>)}
                   </ul>
                 )}
+                {enlaceDe(h) && <span class="estancia-ver" aria-hidden="true">Ver la habitación <Icono nombre="flecha" tam={16} /></span>}
               </div>
             </article>
           ))}

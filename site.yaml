@@ -63,10 +63,59 @@ secciones:
     titulo: Quince maneras de quedarse
     texto: "Techos altos, suelos de barro antiguo y ropa de cama de algodón egipcio. Todas con baño propio, climatización y vistas al patio, al Tajo o a los tejados de la ciudad."
     habitaciones:
-      - { nombre: Suite del Tajo, categoria: Suite, texto: "La joya de la casa: balcón volado sobre el desfiladero, bañera exenta frente a la ventana y una cama de 200 que mira a la serranía.", precio: "desde 240 €/noche", personas: "2 personas", extras: "Balcón sobre el Tajo, bañera exenta, desayuno en la habitación, cafetera de cápsulas", imagen: /fotos/habitacion-1.jpg }
-      - { nombre: Habitación Patio de los Naranjos, categoria: Habitación, texto: "Abierta a la galería del patio, con el murmullo de la fuente y el olor del azahar en primavera. Tranquila y fresca en verano.", precio: "desde 145 €/noche", personas: "2 personas", extras: "Vistas al patio, ducha de lluvia, minibar, escritorio", imagen: /fotos/habitacion-2.jpg }
-      - { nombre: Habitación Torreón, categoria: Habitación, texto: "En lo alto de la casa, con vigas de madera vistas y una ventana a los tejados del casco antiguo y la iglesia de Santa María.", precio: "desde 165 €/noche", personas: "2 personas + cuna", extras: "Vigas vistas, vistas a la ciudad, ducha de lluvia, carta de almohadas", imagen: /fotos/habitacion-3.jpg }
-      - { nombre: Apartamento La Alameda, categoria: Apartamento, texto: "Para quedarse más días: salón con cocina equipada, un dormitorio de matrimonio y un sofá cama. Entrada independiente por el callejón.", precio: "desde 190 €/noche", personas: "Hasta 4 personas", extras: "Cocina equipada, lavadora, entrada independiente, servicios del hotel", imagen: /fotos/apartamento-1.jpg }
+      - nombre: Suite del Tajo
+        categoria: Suite
+        texto: "La joya de la casa: balcón volado sobre el desfiladero, bañera exenta frente a la ventana y una cama de 200 que mira a la serranía."
+        precio: "desde 240 €/noche"
+        personas: "2 personas"
+        extras: "Balcón sobre el Tajo, bañera exenta, desayuno en la habitación, cafetera de cápsulas"
+        imagen: /fotos/habitacion-1.jpg
+        imagenes: "/fotos/habitacion-2.jpg; /fotos/galeria-3.jpg"
+        detalle: |
+          Es la habitación que mejor explica la casa. Se entra por un pequeño vestíbulo con suelo de barro antiguo y, al fondo, el balcón volado se abre sobre el desfiladero. La luz cambia durante todo el día: dorada al amanecer, blanca a mediodía y rojiza cuando se pone el sol detrás de la serranía.
+
+          La bañera exenta está colocada frente a la ventana, de modo que el baño es también una forma de mirar el paisaje. La cama, amplia y con ropa de algodón egipcio, mira a las montañas, y hay una mesa baja para tomar el desayuno sin salir de la habitación si apetece.
+
+          Pensada para parejas que viajan a descansar, celebraciones tranquilas y escapadas largas. Climatización individual, cafetera de cápsulas y una selección de infusiones locales esperan en la habitación. Si nos avisas al reservar, la preparamos con flores del patio o con una botella de vino de la serranía.
+      - nombre: Habitación Patio de los Naranjos
+        categoria: Habitación
+        texto: "Abierta a la galería del patio, con el murmullo de la fuente y el olor del azahar en primavera. Tranquila y fresca en verano."
+        precio: "desde 145 €/noche"
+        personas: "2 personas"
+        extras: "Vistas al patio, ducha de lluvia, minibar, escritorio"
+        imagen: /fotos/habitacion-2.jpg
+        detalle: |
+          Se abre a la galería del patio y es la más serena de la casa. Por la mañana entra una luz suave a través de las contraventanas de madera y se oye la fuente; en primavera, el azahar llega hasta la almohada. En verano es la más fresca, porque los muros gruesos y la sombra de los naranjos mantienen la temperatura sin esfuerzo.
+
+          La habitación tiene techos altos, cama grande con cabecero de forja, escritorio junto a la ventana y un baño con ducha de lluvia revestido de azulejo artesanal. El minibar se repone con productos de la comarca.
+
+          Es una buena elección para quien busca silencio, para viajes de trabajo que piden un rincón donde escribir con calma y para quienes prefieren la intimidad del patio a las vistas lejanas. Desde la puerta se llega al desayuno en pocos pasos, y por la tarde la galería es un sitio estupendo para leer.
+      - nombre: Habitación Torreón
+        categoria: Habitación
+        texto: "En lo alto de la casa, con vigas de madera vistas y una ventana a los tejados del casco antiguo y la iglesia de Santa María."
+        precio: "desde 165 €/noche"
+        personas: "2 personas + cuna"
+        extras: "Vigas vistas, vistas a la ciudad, ducha de lluvia, carta de almohadas"
+        imagen: /fotos/habitacion-3.jpg
+        detalle: |
+          Ocupa lo más alto de la casa y se alcanza por una escalera de piedra que ya forma parte de la experiencia. Arriba esperan las vigas de madera vistas, las paredes encaladas y una ventana que enmarca los tejados del casco antiguo con la iglesia de Santa María al fondo. Al caer la tarde, con las campanas, parece una postal.
+
+          Es una habitación luminosa y recogida, con cama amplia, ducha de lluvia y una carta de almohadas para elegir la que mejor te ayude a dormir. Admite una cuna, así que también funciona bien para quien viaja con un bebé.
+
+          Se la recomendamos a quien disfruta de las vistas sobre la ciudad y no le importa subir unas escaleras a cambio de tener el mejor ángulo de los tejados. Es cómoda para estancias de fin de semana y está a un paso de las calles por las que se sale a pasear después de desayunar.
+      - nombre: Apartamento La Alameda
+        categoria: Apartamento
+        texto: "Para quedarse más días: salón con cocina equipada, un dormitorio de matrimonio y un sofá cama. Entrada independiente por el callejón."
+        precio: "desde 190 €/noche"
+        personas: "Hasta 4 personas"
+        extras: "Cocina equipada, lavadora, entrada independiente, servicios del hotel"
+        imagen: /fotos/apartamento-1.jpg
+        detalle: |
+          Es la opción para quedarse más días con la libertad de una casa propia y los servicios de un hotel. Tiene entrada independiente por el callejón, de modo que se puede ir y venir a cualquier hora sin pasar por la recepción, y un salón luminoso con cocina totalmente equipada, mesa grande y sofá cama.
+
+          El dormitorio de matrimonio está separado del salón por una puerta, con armarios amplios y un baño completo. La lavadora ayuda a viajar ligero, y la cocina permite preparar con calma lo que se compre en el mercado y las tiendas de la sierra.
+
+          Funciona muy bien para familias, para grupos pequeños de amigos y para quien trabaja unas semanas fuera de casa. Quien se aloja aquí puede usar el patio, el desayuno y el restaurante cuando quiera, y el equipo de recepción se encarga de la limpieza y de cualquier cosa que haga falta durante la estancia.
 
   experiencias:
     activa: true

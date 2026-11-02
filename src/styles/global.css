@@ -184,6 +184,15 @@
   .estancia-extras li { display: flex; gap: .7rem; align-items: baseline; }
   .estancia-extras li::before { content: ""; flex-shrink: 0; width: .4rem; height: .4rem; transform: translateY(-.1rem) rotate(45deg); background: var(--oro); }
 
+  /* Fila con ficha: toda la fila es un enlace al título */
+  .estancia--enlace { position: relative; }
+  .estancia-enlace { color: inherit; text-decoration: none; }
+  .estancia-enlace::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .estancia-enlace:focus-visible { outline: none; }
+  .estancia--enlace:has(.estancia-enlace:focus-visible) { outline: 2px solid var(--oro); outline-offset: -6px; }
+  .estancia-ver { display: inline-flex; align-items: center; gap: .4rem; align-self: flex-start; margin-top: 1.75rem; min-height: 2.75rem; font-weight: 600; border-bottom: 1px solid var(--oro); }
+  .estancia--enlace:hover .estancia-ver { color: var(--oro-claro); }
+
   /* ---------- Experiencias: arcos en fila ---------- */
   .arcos { display: grid; gap: 3rem 1.5rem; }
   @media (min-width: 640px) { .arcos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

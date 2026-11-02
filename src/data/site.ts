@@ -16,7 +16,7 @@ export interface Noticia { fecha: string; titulo: string; texto?: string; url?: 
  * («2 personas»); `categoria` es el tipo («Habitación», «Suite», «Apartamento»); `extras` es UNA cadena separada
  * por comas («Balcón, bañera exenta, minibar»), nunca una lista.
  */
-export interface Habitacion { nombre: string; categoria: string; texto: string; precio: string; personas: string; extras: string; imagen: string }
+export interface Habitacion { nombre: string; categoria: string; texto: string; precio: string; personas: string; extras: string; imagen: string; detalle?: string; imagenes?: string; slug?: string }
 
 export interface Seccion {
   activa: boolean;
@@ -106,6 +106,10 @@ function normalizar(s: Crudo = {}): Seccion {
         personas: texto(h.personas),
         extras: texto(h.extras),
         imagen: texto(h.imagen),
+        // Para la ficha propia (src/lib/paginas.ts): texto largo, fotos extra y dirección opcional
+        ...(texto(h.detalle) && { detalle: String(h.detalle).trim() }),
+        ...(texto(h.imagenes) && { imagenes: texto(h.imagenes) }),
+        ...(texto(h.slug) && { slug: texto(h.slug) }),
       })),
     declaracion: texto(s.declaracion),
     autor: texto(s.autor),

@@ -80,3 +80,8 @@ baño). Paleta negro, oro y lino; sin texto legible, sin logotipos y sin persona
   garalda en cursiva enorme, la cúpula, el arco y el negro con oro viejo apagado. Tampoco volver a la didona recta, las
   mayúsculas espaciadas, los botones dorados rectos ni el marco dorado de la portada: eso es `joyeria-artesania`.
 - Poner textos fijos en los componentes o inventar precios, cifras u opiniones.
+
+## Páginas propias (fichas)
+Con la misma piel que la portada: cabecera y pie de la plantilla, migas (Inicio › Sección › Elemento), hero con la foto del
+elemento (sin foto, su icono), `detalle` en párrafos, tabla de datos, caja de contacto, galería (`imagenes`) y otros elementos
+de la misma lista.
