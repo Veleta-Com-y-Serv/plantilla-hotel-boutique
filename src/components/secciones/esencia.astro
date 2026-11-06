@@ -1,7 +1,8 @@
 ---
 // Esencia de la casa (banda lino con cúpula): una frase grande en garalda redonda (`declaracion`) firmada (`autor`) junto a una foto con
 // remate de arco y filete dorado (`imagen`). Sin foto, la frase ocupa la banda. Sin frase ni título, no se pinta.
-// Campos: antetitulo, titulo (opcional, encima de la frase), declaracion, autor, imagen, cta.
+// Campos: antetitulo, titulo (opcional, encima de la frase), declaracion, autor, texto, imagen, cta. Sin `declaracion`,
+// `texto` hace de frase; con las dos, `texto` va en un párrafo debajo de la firma.
 import { seccion, nueva } from '../../data/site';
 import { altSeccion } from '../../lib/seo';
 import Seccion from '../ui/Seccion.astro';
@@ -9,6 +10,7 @@ import Imagen from '../ui/Imagen.astro';
 interface Props { id: string }
 const s = seccion(Astro.props.id);
 const frase = s?.declaracion || s?.texto || '';
+const parrafo = s?.declaracion && s?.texto ? s.texto : '';
 ---
 
 {
@@ -27,6 +29,7 @@ const frase = s?.declaracion || s?.texto || '';
           {s.titulo && <h2 class="titulo-seccion mb-8 !mt-0">{s.titulo}</h2>}
           {frase && <blockquote class="esencia-frase">{frase}</blockquote>}
           {s.autor && <figcaption class="esencia-autor rotulo">{s.autor}</figcaption>}
+          {parrafo && <p class="esencia-texto">{parrafo}</p>}
           {s.cta?.url && <a class="btn mt-10" href={s.cta.url} {...nueva(s.cta.url)}>{s.cta.texto}</a>}
         </figure>
       </div>

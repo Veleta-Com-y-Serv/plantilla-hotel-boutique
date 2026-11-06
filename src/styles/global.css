@@ -149,6 +149,7 @@
   .esencia-frase::before { content: "\201C"; display: block; height: .55em; margin-bottom: .2em; font-size: 2.2em; line-height: 1; color: var(--oro); font-style: normal; }
   .esencia-autor { display: flex; align-items: center; gap: .9rem; margin-top: 2rem; color: var(--oro-texto); }
   .esencia-autor::before { content: ""; width: 1.75rem; height: 1px; background: currentColor; }
+  .esencia-texto { max-width: 40rem; margin-top: 2rem; font-size: 1.125rem; line-height: 1.75; }
   .esencia--sola { max-width: 64rem; }
 
   /* Arco de medio punto con filete dorado separado */

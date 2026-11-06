@@ -22,7 +22,7 @@ secciones:
   - { id: contacto, nombre: Contacto }
 estilo: exclusivo
 plan_minimo: presencia
-version: 1.2.0
+version: 1.2.1
 base: astrowind
 demo_url: https://demo-plantilla-hotel-boutique.noexpertise.com
 activa: true
